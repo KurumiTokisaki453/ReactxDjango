@@ -1,8 +1,8 @@
-export function TaskCard({ tareas }) {
+export function TaskCard({ tarea }) {
   return (
-    <div key={tareas.id}>
-      <h1>{tareas.title}</h1>
-      <p>{tareas.descripcion}</p>
+    <div key={tarea.id}>
+      <h1>{tarea.title}</h1>
+      <p>{tarea.descripcion}</p>
     </div>
   )
 }
