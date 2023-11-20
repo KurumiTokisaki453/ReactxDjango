@@ -8,11 +8,7 @@ export function TasksList() {
   useEffect(() => {
     async function loadTasks() {
       const resp = await getAllTasks();
-      setTareas(resp.data)
-      console.log("Aquí abajo mi lista de arrays => [ {},{},...]");
-      console.log(resp);
-      console.log("Aquí abajo mis datos a mostrar (TaskCard)");
-      console.log(resp.data);
+      setTareas(resp.data);
     }
     loadTasks();
   }, []);

@@ -1,24 +1,40 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form'
-import { createTask, deleteTask } from '../api/task.api';
+import { createTask, deleteTask, getTask, updateTask } from '../api/task.api';
 import { useNavigate, useParams } from 'react-router-dom'
 
 export function TaskFormPage() {
   const {
     register,
     handleSubmit,
-    formState : {errors}
+    formState : {errors},
+    setValue
   } = useForm();
 
-  // import variables para fácil uso
-  const navegar = useNavigate();
-  const paramet = useParams();
-  console.log("Antes del params.")
-  console.log(paramet)
+  // import variables para fácil uso posterior
+  const navegar = useNavigate()
+  const paramet = useParams()
 
   const onSubmit = handleSubmit(async data => {
-    const responde = await createTask(data)
+    if (paramet.id) {
+      await updateTask(paramet.id, data);
+    } else {
+      await createTask(data);
+    }
     navegar("/pages");
   })
+
+  useEffect(() => {
+    async function loadTask() {
+      const {data : {title,descripcion},} = await getTask(paramet.id);
+      setValue('title', title)
+      setValue('descripcion', descripcion)
+      // const answer = await getTask(paramet.id);
+      // setValue('title', answer.data.title)
+      // setValue('descripcion', answer.data.descripcion)
+    }
+    loadTask();
+  }, [])
 
   return (
     <div>
