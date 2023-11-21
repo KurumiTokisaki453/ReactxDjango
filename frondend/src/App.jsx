@@ -9,14 +9,16 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navigation/>
-      <Routes>
-        <Route path="/" element={<Navigate to="/pages" />} />
-        <Route path="/pages" element={ <Taskspage />} />
-        <Route path="/pages-form" element={ <TaskFormPage /> } />
-        <Route path="/pages/:id" element={ <TaskFormPage/> } />     
-      </Routes>
-      <Toaster/>
+      <div className="container mx-auto">
+        <Navigation/>
+        <Routes>
+          <Route path="/" element={<Navigate to="/pages" />} />
+          <Route path="/pages" element={ <Taskspage />} />
+          <Route path="/pages-form" element={ <TaskFormPage /> } />
+          <Route path="/pages/:id" element={ <TaskFormPage/> } />     
+        </Routes>
+        <Toaster/>
+      </div>
     </BrowserRouter>
   )
 }
